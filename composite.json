@@ -1,0 +1,34 @@
+{
+	"compositeRequest": [{
+			"method": "POST",
+			"url": "/services/data/v50.0/sobjects/Account",
+			"referenceId": "newAccount",
+			"body": {
+				"Name": "ABC Labs"
+			}
+		},
+		{
+			"method": "POST",
+			"url": "/services/data/v50.0/sobjects/Contact",
+			"referenceId": "newContact",
+			"body": {
+				"FirstName": "Chandrakant",
+				"LastName": "Pitroda",
+				"Email": "cnpitroda@gmail.com",
+				"AccountId": "@{newAccount.id}"
+			}
+		},
+		{
+			"method": "POST",
+			"url": "/services/data/v50.0/sobjects/Opportunity",
+			"referenceId": "newopportunity1",
+			"body": {
+				"AccountId": "@{newAccount.id}",
+				"StageName": "Prospecting",
+				"CloseDate": "2020-11-22",
+				"Name": "LaptopDeal"
+
+			}
+		}
+	]
+}
