@@ -14,7 +14,7 @@
 					"url": "/services/data/v50.0/sobjects/Account",
 					"referenceId": "Account2",
 					"body": {
-						"Name": "ABC Corporations",
+						"Name": "ABC Corporations India",
 						"ParentId": "@{Account1.id}"
 					}
 				},
