@@ -1,0 +1,112 @@
+{
+	"graphs": [{
+			"graphId": "graph1",
+			"compositeRequest": [{
+					"method": "POST",
+					"url": "/services/data/v50.0/sobjects/Account",
+					"referenceId": "Account1",
+					"body": {
+						"Name": "ABC Corporations"
+					}
+				},
+				{
+					"method": "POST",
+					"url": "/services/data/v50.0/sobjects/Account",
+					"referenceId": "Account2",
+					"body": {
+						"Name": "ABC Corporations",
+						"ParentId": "@{Account1.id}"
+					}
+				},
+				{
+					"method": "POST",
+					"url": "/services/data/v50.0/sobjects/Contact",
+					"referenceId": "Contact1",
+					"body": {
+						"FirstName": "James",
+						"LastName": "Mathew",
+						"Email": "jsm@google.com",
+						"AccountId": "@{Account2.id}"
+					}
+				},
+				{
+					"method": "POST",
+					"url": "/services/data/v50.0/sobjects/Case",
+					"referenceId": "Case1",
+					"body": {
+						"AccountId": "@{Account2.id}",
+						"ContactId": "@{Contact1.id}",
+						"Subject": "Installation of Diesel Engine"
+					}
+				},
+				{
+					"method": "POST",
+					"url": "/services/data/v50.0/sobjects/Opportunity",
+					"referenceId": "Opportunity1",
+					"body": {
+						"AccountId": "@{Account2.id}",
+						"StageName": "Prospecting",
+						"CloseDate": "2020-11-25",
+						"Name": "Genwatt Diesel",
+						"Pricebook2Id": "01s2x000004OivNAAS"
+					}
+				},
+				{
+					"method": "POST",
+					"url": "/services/data/v50.0/sobjects/OpportunityLineItem",
+					"referenceId": "newProduct1",
+					"body": {
+						"OpportunityId": "@{Opportunity1.id}",
+						"Product2Id": "01t2x000001VYbsAAG",
+						"Quantity": "1",
+						"UnitPrice": "100"
+					}
+				},
+				{
+					"method": "POST",
+					"url": "/services/data/v50.0/sobjects/OpportunityLineItem",
+					"referenceId": "newProduct2",
+					"body": {
+						"OpportunityId": "@{Opportunity1.id}",
+						"Product2Id": "01t2x000001VYblAAG",
+						"Quantity": "1",
+						"UnitPrice": "500"
+					}
+				}
+			]
+		},
+		{
+			"graphId": "graph2",
+			"compositeRequest": [{
+					"method": "POST",
+					"url": "/services/data/v50.0/sobjects/Account",
+					"referenceId": "newAccount",
+					"body": {
+						"Name": "ABC Labs"
+					}
+				},
+				{
+					"method": "POST",
+					"url": "/services/data/v50.0/sobjects/Contact",
+					"referenceId": "newContact",
+					"body": {
+						"FirstName": "Jane",
+						"LastName": "Patrick",
+						"Email": "jp@google.com",
+						"AccountId": "@{newAccount.id}"
+					}
+				},
+				{
+					"method": "POST",
+					"url": "/services/data/v50.0/sobjects/Case",
+					"referenceId": "newProduct",
+					"body": {
+						"AccountId": "@{newAccount.id}",
+						"ContactId": "@{newContact.id}",
+						"Subject": "New Case"
+					}
+				}
+			]
+		}
+	]
+}
